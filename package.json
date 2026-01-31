@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "node src/index.js",
-    "build": "node obfuscate.js",
+    "dev": "node index.js",
+    "build": "echo \"skip build on railway\"",
     "start": "node dist/index.js"
   },
   "keywords": [
