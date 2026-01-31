@@ -1,0 +1,23 @@
+# secrets
+.env
+
+# dev source (never publish)
+commands/
+events/
+utils/
+data/
+index.js
+obfuscate.js
+slashcommands.js
+lastVideo.txt
+
+# runtime data
+badwords.json
+cases.json
+
+# dependencies
+node_modules/
+
+# OS junk
+.DS_Store
+Thumbs.db
