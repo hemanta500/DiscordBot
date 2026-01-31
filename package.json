@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "dev": "node index.js",
-    "build": "echo \"skip build on railway\"",
+    "build": "node obfuscate.js",
     "start": "node dist/index.js"
   },
   "keywords": [
@@ -19,6 +19,7 @@
   "author": "Hemanta (NiyoCore)",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^12.6.2",
     "discord.js": "^14.25.1",
     "dotenv": "^17.2.3",
     "rss-parser": "^3.13.0"
