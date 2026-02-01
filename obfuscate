@@ -1,0 +1,52 @@
+const fs = require("fs");
+const path = require("path");
+const JavaScriptObfuscator = require("javascript-obfuscator");
+
+const SOURCE_ITEMS = [
+  "index.js",
+  "commands",
+  "events",
+  "utils",
+  "slashcommands.js",
+];
+
+function obfuscateFile(src, dest) {
+  const code = fs.readFileSync(src, "utf8");
+  if (!code.trim()) return;
+
+  const obfuscated = JavaScriptObfuscator.obfuscate(code, {
+    compact: true,
+    controlFlowFlattening: true,
+    stringArray: true,
+    stringArrayEncoding: ["base64"],
+    renameGlobals: false,
+  }).getObfuscatedCode();
+
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  fs.writeFileSync(dest, obfuscated);
+}
+
+function copyTree(src, dest) {
+  const stat = fs.statSync(src);
+
+  if (stat.isDirectory()) {
+    fs.mkdirSync(dest, { recursive: true }); // 🔑 FIX
+    for (const file of fs.readdirSync(src)) {
+      copyTree(path.join(src, file), path.join(dest, file));
+    }
+  } else if (src.endsWith(".js")) {
+    obfuscateFile(src, dest);
+  }
+}
+
+console.log("🔐 Building production dist...");
+fs.rmSync("dist", { recursive: true, force: true });
+fs.mkdirSync("dist");
+
+for (const item of SOURCE_ITEMS) {
+  if (fs.existsSync(item)) {
+    copyTree(item, path.join("dist", item));
+  }
+}
+
+console.log("✅ dist build complete");

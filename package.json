@@ -1,33 +1,17 @@
 {
-  "name": "niyocore",
-  "version": "1.0.0",
-  "description": "NiyoCore Discord Bot (Production Build)",
-  "main": "dist/index.js",
+  "name": "niyocore-utility",
+  "version": "2.0.0",
   "type": "commonjs",
+  "main": "index.js",
   "scripts": {
-    "dev": "node index.js",
-    "build": "node obfuscate.js",
-    "start": "node dist/index.js"
+    "start": "node index.js",
+    "register": "node register.js"
   },
-  "keywords": [
-    "discord",
-    "discord-bot",
-    "moderation",
-    "giveaway",
-    "xp-system"
-  ],
-  "author": "Hemanta (NiyoCore)",
-  "license": "ISC",
   "dependencies": {
-    "better-sqlite3": "^12.6.2",
     "discord.js": "^14.25.1",
-    "dotenv": "^17.2.3",
-    "rss-parser": "^3.13.0"
-  },
-  "devDependencies": {
-    "javascript-obfuscator": "^5.2.1"
+    "dotenv": "^17.2.3"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18"
   }
 }
